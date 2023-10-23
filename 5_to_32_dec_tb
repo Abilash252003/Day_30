@@ -1,0 +1,42 @@
+A///100 days of RTL///
+
+///Abilash P///
+
+///5:32 decoder with low enable pin test bench//
+
+module dec_5_to_32_tb ();
+
+reg  [4:0]A;
+reg  en;
+wire [31:0]Y;
+
+dec_5_to_32 DUT (.A(A), .en(en), .Y(Y));
+
+integer i;
+
+initial
+begin
+  en = 1'b1;
+  A  = 5'bx;
+  $display ("The en = %b-----A4 = %b-----A3 = %b-----A2 = %b-----A1 = %b-----A0 = %b",en, A[4], A[3], A[2], A[1], A[0]);
+  $display ("The output  Y7 = %b----- Y6 = %b-----Y5 =  %b-----Y4 =  %b-----Y3 =  %b-----Y2 =  %b-----Y1 = %b----- Y0 = %b",Y[7],   Y[6],  Y[5],  Y[4],  Y[3],  Y[2],  Y[1],  Y[0]);
+  $display ("The output Y15 = %b-----Y14 = %b-----Y13 = %b-----Y12 = %b-----Y11 = %b-----Y10 = %b-----Y9 = %b----- Y8 = %b",Y[15],  Y[14], Y[13], Y[12], Y[11], Y[10], Y[9],  Y[8]);
+  $display ("The output Y23 = %b-----Y22 = %b-----Y21 = %b-----Y20 = %b-----Y19 = %b-----Y18 = %b-----Y17 =%b----- Y16 = %b",Y[23], Y[22], Y[21], Y[20], Y[19], Y[18], Y[17], Y[16]);
+  $display ("The output Y31 = %b-----Y30 = %b-----Y29 = %b-----Y28 = %b-----Y27 = %b-----Y26 = %b-----Y25 =%b----- Y24 = %b",Y[31], Y[30], Y[29], Y[28], Y[27], Y[26], Y[25], Y[24]);
+  #20;
+  $display ("------------------------------------------------------------------------");
+  en = 1'b0;
+  for(i=0; i<32; i=i+1)
+  begin
+    A = i;
+    #20;
+  $display ("The en = %b-----A4 = %b-----A3 = %b-----A2 = %b-----A1 = %b-----A0 = %b",en, A[4], A[3], A[2], A[1], A[0]);
+  $display ("The output  Y7 = %b----- Y6 = %b-----Y5 =  %b-----Y4 =  %b-----Y3 =  %b-----Y2 =  %b-----Y1 = %b----- Y0 = %b",Y[7],   Y[6],  Y[5],  Y[4],  Y[3],  Y[2],  Y[1],  Y[0]);
+  $display ("The output Y15 = %b-----Y14 = %b-----Y13 = %b-----Y12 = %b-----Y11 = %b-----Y10 = %b-----Y9 = %b----- Y8 = %b",Y[15],  Y[14], Y[13], Y[12], Y[11], Y[10], Y[9],  Y[8]);
+  $display ("The output Y23 = %b-----Y22 = %b-----Y21 = %b-----Y20 = %b-----Y19 = %b-----Y18 = %b-----Y17 =%b----- Y16 = %b",Y[23], Y[22], Y[21], Y[20], Y[19], Y[18], Y[17], Y[16]);
+  $display ("The output Y31 = %b-----Y30 = %b-----Y29 = %b-----Y28 = %b-----Y27 = %b-----Y26 = %b-----Y25 =%b----- Y24 = %b",Y[31], Y[30], Y[29], Y[28], Y[27], Y[26], Y[25], Y[24]);  
+  end
+end
+
+ 
+endmodule
