@@ -1,0 +1,30 @@
+///100 Days of RTL///
+
+///Abilash P///
+
+///5:32 decoder using 1_to_2_dec and 2_to_4_dec model///
+
+module dec_5_to_32 (A, en, Y);
+
+input  [4:0]A;
+input  en;
+
+output [31:0]Y;
+
+wire p0,  p1,  p2,  p3,  p4,  p5,  p6,  p7,  p8,  p9;
+
+dec_1_to_2 dec1 (.A(A[4]), .en(en),  .Y1(p1),    .Y0(p0));
+
+dec_2_to_4 dec2 (.A({A[3], A[2]}), .en(~p0), .Y({p5,  p4,  p3,  p2}));
+dec_2_to_4 dec3 (.A({A[3], A[2]}), .en(~p1), .Y({p9,  p8,  p7,  p6}));
+
+dec_2_to_4 dec4 (.A({A[1], A[0]}), .en(~p2), .Y({Y[3],  Y[2],  Y[1],  Y[0]}));
+dec_2_to_4 dec5 (.A({A[1], A[0]}), .en(~p3), .Y({Y[7],  Y[6],  Y[5],  Y[4]}));
+dec_2_to_4 dec6 (.A({A[1], A[0]}), .en(~p4), .Y({Y[11], Y[10], Y[9],  Y[8]}));
+dec_2_to_4 dec7 (.A({A[1], A[0]}), .en(~p5), .Y({Y[15], Y[14], Y[13], Y[12]}));
+dec_2_to_4 dec8 (.A({A[1], A[0]}), .en(~p6), .Y({Y[19], Y[18], Y[17], Y[16]}));
+dec_2_to_4 dec9 (.A({A[1], A[0]}), .en(~p7), .Y({Y[23], Y[22], Y[21], Y[20]}));
+dec_2_to_4 dec10(.A({A[1], A[0]}), .en(~p8), .Y({Y[27], Y[26], Y[25], Y[24]}));
+dec_2_to_4 dec11(.A({A[1], A[0]}), .en(~p9), .Y({Y[31], Y[30], Y[29], Y[28]}));
+
+endmodule
