@@ -1,0 +1,23 @@
+///100 Days of RTL///
+
+///Abilash P///
+
+///5:32 decoder using 3_to_8_dec and 2_to_4_dec model///
+
+module dec_5_to_32 (A, en, Y);
+
+input  [4:0]A;
+input  en;
+
+output [31:0]Y;
+
+wire p0,  p1,  p2,  p3;
+
+dec_2_to_4 dec1 (.A({A[4], A[3]}), .en(en), .Y({p3,  p2,  p1,  p0}));
+
+dec_3_to_8 dec2 (.A({A[2], A[1], A[0]}), .en(~p0), .Y({Y[7],  Y[6],  Y[5],  Y[4],  Y[3],  Y[2],  Y[1], Y[0]}));
+dec_3_to_8 dec3 (.A({A[2], A[1], A[0]}), .en(~p1), .Y({Y[15], Y[14], Y[13], Y[12], Y[11], Y[10], Y[9], Y[8]}));
+dec_3_to_8 dec4 (.A({A[2], A[1], A[0]}), .en(~p2), .Y({Y[23], Y[22], Y[21], Y[20], Y[19], Y[18], Y[17],Y[16]}));
+dec_3_to_8 dec5 (.A({A[2], A[1], A[0]}), .en(~p3), .Y({Y[31], Y[30], Y[29], Y[28], Y[27], Y[26], Y[25],Y[24]}));
+
+endmodule
